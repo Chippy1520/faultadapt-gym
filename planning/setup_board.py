@@ -10,12 +10,13 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import re
 import subprocess
 import time
 from pathlib import Path
 
 OWNER = "Chippy1520"
-REPO = f"{OWNER}/robust-sim2real-control"
+REPO = f"{OWNER}/faultadapt-gym"
 PROJECT_NUMBER = "3"
 GH = r"C:\Program Files\GitHub CLI\gh.exe"
 CSV_PATH = Path(__file__).with_name("board-import.csv")
@@ -73,17 +74,21 @@ def ensure_label() -> None:
     )
 
 
-def existing_issues() -> dict[str, dict[str, object]]:
+def existing_issues() -> dict[int, dict[str, object]]:
     raw = run("api", f"repos/{REPO}/issues?state=all&per_page=100")
-    return {
-        item["title"]: {
+    issues: dict[int, dict[str, object]] = {}
+    for item in json.loads(raw):
+        if "pull_request" in item:
+            continue
+        match = re.match(r"Week\s+(\d{1,2}):", item["title"])
+        if not match:
+            continue
+        issues[int(match.group(1))] = {
             "url": item["html_url"],
             "id": item["node_id"],
             "number": item["number"],
         }
-        for item in json.loads(raw)
-        if "pull_request" not in item
-    }
+    return issues
 
 
 def issue_body(row: dict[str, str]) -> str:
@@ -181,8 +186,10 @@ def main() -> None:
     for row in rows:
         if int(row["Week"]) < args.start_week:
             continue
+        week = int(row["Week"])
         title = row["Title"]
-        record = known.get(title)
+        body = issue_body(row)
+        record = known.get(week)
         if not record:
             response = run(
                 "api",
@@ -192,7 +199,7 @@ def main() -> None:
                 "-f",
                 f"title={title}",
                 "-f",
-                f"body={issue_body(row)}",
+                f"body={body}",
                 "-f",
                 "labels[]=roadmap",
                 "-f",
@@ -204,8 +211,23 @@ def main() -> None:
                 "id": issue["node_id"],
                 "number": issue["number"],
             }
-            known[title] = record
+            known[week] = record
             created += 1
+        else:
+            run(
+                "api",
+                "--method",
+                "PATCH",
+                f"repos/{REPO}/issues/{record['number']}",
+                "-f",
+                f"title={title}",
+                "-f",
+                f"body={body}",
+                "-f",
+                "labels[]=roadmap",
+                "-f",
+                f"assignees[]={OWNER}",
+            )
 
         url = str(record["url"])
         issue_id = str(record["id"])

@@ -1,3 +1,17 @@
+Metadata-Version: 2.4
+Name: faultadapt-gym
+Version: 0.1.0
+Summary: CPU-first benchmark wrappers for adaptive robot control under hidden faults
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: gymnasium[classic-control]<2,>=1.0
+Requires-Dist: numpy<3,>=1.26
+Provides-Extra: dev
+Requires-Dist: pytest<10,>=8; extra == "dev"
+Requires-Dist: ruff>=0.8; extra == "dev"
+Provides-Extra: rl
+Requires-Dist: stable-baselines3<3,>=2.5; extra == "rl"
+
 # FaultAdapt-Gym
 
 **CPU-first research benchmark for adaptive robot control under hidden and time-varying faults.**

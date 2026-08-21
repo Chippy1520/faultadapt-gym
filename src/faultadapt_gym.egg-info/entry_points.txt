@@ -1,0 +1,2 @@
+[console_scripts]
+faultadapt-smoke = faultadapt_gym.smoke:main

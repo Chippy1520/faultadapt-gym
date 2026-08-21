@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Experiments and local data
+runs/
+wandb/
+data/raw/
+checkpoints/
+*.ckpt
+*.pt
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

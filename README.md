@@ -22,13 +22,14 @@ A 24-week research project studying whether curriculum-based domain randomizatio
 
 ## Project board
 
-The GitHub Project board contains one issue for each week, including technical work, an exit criterion, a relationship/public action, phase, and calendar dates.
+Track execution on the public [24-week GitHub Project board](https://github.com/users/Chippy1520/projects/3). It contains one issue for each week, including technical work, an exit criterion, a relationship/public action, phase, and calendar dates.
 
 ## Repository map
 
 - `ROADMAP.md` — complete 24-week strategy
 - `research-log.md` — running hypothesis/experiment/interpretation log
 - `planning/board-import.csv` — portable backup of the board tasks
+- `planning/setup_board.py` — idempotent GitHub board-population script
 - `docs/` — reports, figures, and project-page material
 - `src/` — implementation
 - `tests/` — tests

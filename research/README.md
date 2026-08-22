@@ -4,6 +4,7 @@ This hierarchy separates evidence, student thinking, decisions, protocols, and g
 
 ```text
 research/
+├── scouting/      unverified bot evidence packets
 ├── reading/       paper queue and one note per paper
 ├── literature/    cross-paper evidence matrix
 ├── questions/     open research questions and hypotheses
@@ -21,3 +22,5 @@ results/
 ## Rule
 
 Agent summaries are scouting aids. Important claims must be checked against the primary paper, and every scientific decision is recorded by the student in `research/decisions/decision-log.md`.
+
+Begin with `reading/START_HERE.md`. Do not copy scouting prose into a report as if it were student-verified evidence.

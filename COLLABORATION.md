@@ -1,97 +1,102 @@
-# Collaboration and Agent-Orchestration Protocol
+# Research Collaboration Protocol
 
-FaultAdapt-Gym is a collaboration with Chathuka—not an autonomous research project run by AI.
+FaultAdapt-Gym is a student-led research collaboration—not an autonomous agent project.
 
-## Decision ownership
+## Roles
 
-Chathuka owns:
+### Student researcher (Chathuka)
 
-- the research question and hypotheses;
-- final paper selection and interpretation;
-- methodological choices after reviewing alternatives;
-- experiments treated as evidence;
-- claims, writing voice, outreach, and submission decisions.
+- Owns the research question, hypotheses, and final claims.
+- Reads the shortlisted anchor papers rather than relying only on summaries.
+- Chooses methods after reviewing trade-offs.
+- Runs or directly reviews key experiments.
+- Writes the first interpretation of important results.
+- Approves protocol freezes, scope changes, public releases, and submissions.
 
-Fabric acts as project lead and orchestrator. It maintains the roadmap, identifies dependencies, prepares decision points, tracks evidence, coordinates specialist agents, and verifies engineering artifacts. It must not silently replace Chathuka's learning or judgment.
+### Main Fabric session — coordinator
 
-## Agent roles
+- Maintains the 24-week plan, dependencies, board, and stage gates.
+- Decomposes weekly goals into bounded research, engineering, and review tasks.
+- Assigns specialist agents only the context they need.
+- Integrates agent outputs into options and evidence packets.
+- Checks citations, reproducibility, scope, and unsupported claims.
+- Never substitutes agent-generated conclusions for the student's judgment.
 
-### Research bot
+### Research bot / literature agents
 
-Use a dedicated delegated agent/session for literature work:
+- Locate primary papers, official code, datasets, and benchmarks.
+- Build evidence tables and identify conflicting findings.
+- Extract limitations and open questions with source links.
+- Flag possible duplication and uncertainty.
+- Do not decide novelty, hypotheses, interpretations, or paper claims.
 
-- search for papers and official implementations;
-- produce structured paper matrices;
-- trace prior work and competing benchmarks;
-- identify possible gaps and contradictory evidence;
-- return citations, links, confidence, and unresolved questions.
+### Engineering / experiment agents
 
-It does not choose the research claim. Chathuka reviews the output and records what he understands, disagrees with, and wants to test.
+- Implement bounded components, tests, configurations, and analysis tools.
+- Return exact commands, artifacts, and observed results.
+- Do not expand the experimental scope or launch expensive sweeps without approval.
 
-### Experiment bot
+### Reviewer agents
 
-Use a separate agent/session for bounded engineering subtasks:
+- Critique a proposal, protocol, code path, figure, or draft independently.
+- Look for confounds, leakage, weak baselines, and overclaiming.
+- Do not silently rewrite the student's scientific position.
 
-- inspect relevant repository code;
-- propose experiment configurations;
-- implement an approved, narrowly scoped component;
-- run tests and return real logs and artifact paths.
+## Session map
 
-It must not expand the experiment matrix without approval.
+The main session remains the control room. Separate delegated sessions are created for:
 
-### Reviewer bot
+1. Adaptive/meta-RL literature scouting.
+2. Benchmark and novelty landscape checking.
+3. CPU-feasible methods and implementation scouting.
+4. Individual engineering components when implementation begins.
+5. Independent experiment/protocol review.
+6. Paper review near release.
 
-Use an independent agent/session after a proposal, protocol, or result exists:
+Each sub-session receives a bounded question and returns an evidence packet to the main session. Decisions are made here with the student.
 
-- look for leakage, unfair comparisons, confounders, and missing baselines;
-- challenge statistical and causal claims;
-- distinguish infrastructure success from scientific evidence;
-- produce blocking issues and optional improvements separately.
+## Collaboration loop
 
-### Writing bot
+1. **Frame:** Main session and student define the question and acceptance criteria.
+2. **Delegate:** Specialist agent investigates one bounded subgoal.
+3. **Inspect:** Main session checks sources, assumptions, and missing evidence.
+4. **Discuss:** Student reviews options and explains their preferred interpretation.
+5. **Decide:** Student approves the method, hypothesis, or scope change.
+6. **Execute:** Student and engineering agent implement/run the agreed work.
+7. **Interpret:** Student writes the first result interpretation; agents critique it.
+8. **Record:** Commit artifacts and update the research log and project board.
 
-Use only after Chathuka records his interpretation:
+## Required student approval gates
 
-- organize notes into a report section;
-- improve clarity without inventing claims;
-- maintain citation and evidence links;
-- mark unresolved placeholders explicitly.
+No agent may silently pass these gates:
 
-## Workflow for every research subgoal
+- final research-question selection;
+- anchor-paper shortlist;
+- two-page proposal;
+- baseline and metric selection;
+- final evaluation protocol;
+- interpretation of headline results;
+- novelty wording;
+- public release or venue submission.
 
-1. **Frame together:** Fabric presents the decision, constraints, and two or three viable options.
-2. **Choose:** Chathuka selects or revises the question and states his current reasoning.
-3. **Delegate:** Fabric gives the specialist bot a bounded, self-contained brief.
-4. **Inspect:** The bot returns sources, artifacts, uncertainty, and open questions—not a final decision.
-5. **Discuss:** Fabric summarizes trade-offs and asks Chathuka to interpret the evidence.
-6. **Decide:** Chathuka approves the method, claim, or next experiment.
-7. **Execute:** An experiment bot or Fabric implements only the approved scope.
-8. **Review independently:** A reviewer bot checks the result before it enters the paper.
-9. **Record:** Fabric updates the board and research log with decisions and verifiable evidence.
+## Agent output contract
 
-## Required agent handoff
+Every research packet must contain:
 
-Every delegated brief should include:
+- bounded question answered;
+- primary-source links;
+- evidence versus inference clearly separated;
+- limitations and contradictory evidence;
+- decisions still required from the student;
+- suggested next reading or experiment;
+- no fabricated citations, results, or novelty claims.
 
-- **Subgoal:** one concrete question or artifact;
-- **Context:** relevant repository paths and prior decisions;
-- **Inputs:** papers, code, data, or experiment outputs it may use;
-- **Constraints:** compute, hardware, time, and excluded work;
-- **Deliverable:** exact format and acceptance criteria;
-- **Evidence:** URLs, commands, logs, or file paths;
-- **Uncertainty:** assumptions and unresolved issues;
-- **Non-goals:** decisions the agent is not allowed to make.
+## Current delegated research work
 
-## Session boundaries
+The first parallel research cycle covers:
 
-Use separate sessions or delegated agents for literature review, implementation, methodological review, and writing so their assumptions do not collapse into one voice. Fabric remains the main planning session and synthesizes their outputs. Agent self-reports are treated as unverified until source links, files, or execution results are checked.
+- adaptive/meta-RL under hidden and changing faults;
+- related benchmarks and possible duplication;
+- practical CPU-first baseline implementations.
 
-## Current division of work
-
-For Week 1:
-
-- **Chathuka:** confirm available weekly hours, write his own short motivation for the research question, and review the four hypotheses in `ROADMAP.md`.
-- **Fabric:** maintain the plan, prepare decision points, track deliverables, and coordinate agents.
-- **Research bot:** begins only after Chathuka chooses the first literature question.
-- **Experiment bot:** handles bounded implementation after the experiment design is approved.
-- **Reviewer bot:** reviews the Week 4 proposal before the environment and method scope are frozen.
+The outputs are inputs to a student discussion—not a finished literature review or autonomous research decision.

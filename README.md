@@ -54,7 +54,7 @@ Install the later RL dependency only when baseline work begins:
 ## Project management
 
 - [GitHub Project board](https://github.com/users/Chippy1520/projects/3)
-- `COLLABORATION.md` — human-in-the-loop agent roles, decision ownership, and handoff protocol
+- `COLLABORATION.md` — student/main-session/research-agent roles and approval gates
 - `ROADMAP.md` — research design and stage gates
 - `planning/board-import.csv` — source of truth for the 24 weekly issues
 - `planning/setup_board.py` — idempotent GitHub board synchronization

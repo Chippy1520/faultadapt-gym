@@ -31,16 +31,14 @@ A CPU-only Pendulum smoke experiment exercises a PD controller under a 50% actua
 
 ```bash
 python -m venv .venv
-.venv/Scripts/python -m pip install -e '.[dev]'
+.venv/Scripts/python -m pip install -e '.[dev,rl,research]'
 .venv/Scripts/python -m pytest
 .venv/Scripts/python -m faultadapt_gym.smoke --episodes 2
 ```
 
-Install the later RL dependency only when baseline work begins:
-
-```bash
-.venv/Scripts/python -m pip install -e '.[rl]'
-```
+The local `.venv` is dedicated to this repository. The `research` extra adds
+JupyterLab, MuJoCo, plotting/statistics tools, TensorBoard, and `python-control`;
+the `rl` extra adds Stable-Baselines3 and SB3-Contrib RecurrentPPO.
 
 ## Evaluation principles
 
@@ -56,6 +54,9 @@ Install the later RL dependency only when baseline work begins:
 - [GitHub Project board](https://github.com/users/Chippy1520/projects/3)
 - `COLLABORATION.md` — student/main-session/research-agent roles and approval gates
 - `ROADMAP.md` — research design and stage gates
+- `research/` — reading queue, paper notes, evidence matrix, decisions, and protocols
+- `experiments/configs/` — version-controlled experiment definitions
+- `results/` — compact aggregate outputs and provenance manifests
 - `planning/board-import.csv` — source of truth for the 24 weekly issues
 - `planning/setup_board.py` — idempotent GitHub board synchronization
 - `research-log.md` — hypothesis and experiment log

@@ -59,6 +59,7 @@ the `rl` extra adds Stable-Baselines3 and SB3-Contrib RecurrentPPO.
 - `results/` — compact aggregate outputs and provenance manifests
 - `planning/board-import.csv` — source of truth for the 24 weekly issues
 - `planning/setup_board.py` — idempotent GitHub board synchronization
+- `planning/mentor-discord-thread.md` — mentor-shareable 24-week plan and review questions
 - `research-log.md` — hypothesis and experiment log
 
 ## Status
